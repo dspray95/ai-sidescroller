@@ -1,0 +1,1 @@
+﻿public enum MapFeature { EMPTY, GROUND, CHASM, PLATFORM, COIN, ENEMY, PLAYER, GOAL}
