@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    public bool playerControlled; 
     public Rigidbody2D rb;
     public float movespeed;
     public bool grounded;
@@ -15,7 +16,8 @@ public class PlayerController : MonoBehaviour {
     public Vector3 startPos;
 
     public int jumpheight;
-        
+    public float move = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,20 +27,31 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        grounded = Physics2D.OverlapArea(top_left.position, bottom_right.position, ground_layer);
-        
-        float move = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(move * movespeed, rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
-        {
-            rb.AddForce(new Vector2(0, jumpheight));
+        grounded = Physics2D.OverlapArea(top_left.position, bottom_right.position, ground_layer);
+        if (playerControlled) { 
+            move = Input.GetAxis("Horizontal");
+            if (Input.GetKeyDown(KeyCode.UpArrow) && grounded)
+            {
+                ControllerJump();
+            }
         }
-        if(transform.position.y <= -50)
+        ControllerMove(move);
+
+        if (transform.position.y <= -50)
         {
             transform.position = startPos;
             score -= 10;
         }
+    }
+    
+    public void ControllerJump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpheight);
+    }
+    public void ControllerMove(float move)
+    {
+        rb.velocity = new Vector2(move * movespeed, rb.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -187,7 +187,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.625, g: 0.38514197, b: 0.2297794, a: 1}
-  m_Intensity: 5
+  m_Intensity: 1.5
   m_Range: 500
   m_SpotAngle: 179
   m_CookieSize: 10
@@ -224,8 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec471c6ccd564a94ca8d090c4fc4ba91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControlled: 0
   rb: {fileID: 50803957141378298}
-  movespeed: 10
+  movespeed: 15
   grounded: 0
   top_left: {fileID: 4736973799706382}
   bottom_right: {fileID: 4931749348561030}
@@ -235,7 +236,8 @@ MonoBehaviour:
     m_Bits: 256
   score: 0
   startPos: {x: 0, y: 0, z: 0}
-  jumpheight: 750
+  jumpheight: 15
+  move: 0
 --- !u!212 &212798918458103674
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -287,7 +289,7 @@ PlatformEffector2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1673937338538806}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295

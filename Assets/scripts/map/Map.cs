@@ -29,7 +29,7 @@ public class Map
         List<int> groundHeights = GenerateGroundHeights();
     }
 
-    public List<MapFeature> GenerateMobs()
+    public List<MapFeature> GenerateMobs(List<int> groundheights, List<MapFeature> features)
     {
         List<MapFeature> mobs = new List<MapFeature>();
 
@@ -40,7 +40,11 @@ public class Map
                 int roll = Random.Range(0, 100);
                 if(roll <= enemyChance)
                 {
-                    mobs.Add(MapFeature.ENEMY);
+                    TryCreateEnemy(i, groundheights, features);
+                    {
+                        mobs.Add(MapFeature.ENEMY);
+                    }
+                    
                 }
                 else if(roll > enemyChance && roll <= coinChance)
                 {
@@ -73,8 +77,8 @@ public class Map
 
         return mobs;
     }
-     
-    public List<MapFeature> GenerateFeatures()
+
+    public List<MapFeature> GenerateFeatures(List<int> groundHeights)
     {
         List<MapFeature> features = new List<MapFeature>();
 
@@ -90,13 +94,16 @@ public class Map
             else
             {
                 int chance = Random.Range(0, 100);
-                if(chance > 0 && chance < chasmChance && features[i - 1] != MapFeature.CHASM)
+                if (chance > 0 && chance < chasmChance)
                 {
-                    List<MapFeature> feature = CreateFeature(MapFeature.CHASM, i, minGroundLevelLength);
-                    features.AddRange(feature);
-                    i += feature.Count - 1;
+                    if (TryCreateChasm(i, groundHeights, minGroundLevelLength))
+                    {
+                        List<MapFeature> feature = CreateFeature(MapFeature.CHASM, i, minGroundLevelLength);
+                        features.AddRange(feature);
+                        i += feature.Count;
+                    }
                 }
-                else if(chance > chasmChance && chance < chasmChance + platformChance && features[i - 1] != MapFeature.PLATFORM)
+                else if(chance > chasmChance && chance < chasmChance + platformChance)
                 {
                     bool buildingPlatform = true;
                     int currentLength = 2;
@@ -135,12 +142,51 @@ public class Map
         }
         return currentFeature;
     }
+    
+    public bool TryCreateChasm(int index, List<int> heights, int length)
+    {
+        for (int i = index; i <= index + length; i++)
+        {
+            if(!CheckHeightsValid(i, heights))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool TryCreateEnemy(int index, List<int> heights, List<MapFeature> features)
+    {
+        for (int i = index - 1; i <= index + 2; i++)
+        {
+            if (!CheckHeightsValid(i, heights) || features[i] == MapFeature.CHASM)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool CheckHeightsValid(int index, List<int> heights)
+    {
+        int beforeDelta = heights[index] - heights[index - 1];
+        int afterDelta = heights[index] - heights[index + 1];
+
+        if (beforeDelta >= 2 || beforeDelta <= -2 || afterDelta >= 2 || afterDelta <= -2)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     public List<int> GenerateGroundHeights()
     {
         List<int> groundHeights = new List<int>();
 
-        for(int i = 0; i <= levelLength-1; i++)
+        for(int i = 0; i <= levelLength; i++)
         {
             List<int> possible;
             if (i < 5)
