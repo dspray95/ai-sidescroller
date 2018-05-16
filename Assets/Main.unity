@@ -156,6 +156,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 20984410053086464, guid: e46910c12e5315140919c0cb7bafdc8a,
+        type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20984410053086464, guid: e46910c12e5315140919c0cb7bafdc8a,
+        type: 2}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114553719719087278, guid: e46910c12e5315140919c0cb7bafdc8a,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e46910c12e5315140919c0cb7bafdc8a, type: 2}
   m_IsPrefabParent: 0
@@ -182,16 +197,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 464413973}
-  m_LocalRotation: {x: -0.009679453, y: -0.11052553, z: 0.08670409, w: 0.99003685}
+  m_LocalRotation: {x: 0, y: 0, z: 0.08724271, w: 0.9961871}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 901262740}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -12.74, z: 10.01}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.01}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -270, y: -24.100006}
+  m_AnchoredPosition: {x: -237.85, y: -24.100006}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464413975
@@ -351,16 +366,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 970263628}
-  m_LocalRotation: {x: -0.00911026, y: 0.10413069, z: -0.08667833, w: 0.9907375}
+  m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 0, z: 1.0001261}
   m_LocalScale: {x: 1.0009868, y: 1.0009867, z: 1.0009868}
   m_Children: []
   m_Father: {fileID: 901262740}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 12, z: -10}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 270, y: -24.100056}
+  m_AnchoredPosition: {x: 251.69, y: -24.100056}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970263630
@@ -508,6 +523,10 @@ MonoBehaviour:
   pc: {fileID: 0}
   builder: {fileID: 1442390221}
   mainCamera: {fileID: 2102006550}
+  createPlayer: 0
+  player: {fileID: 4085093520794104, guid: e3092ad581ec4d0498ab1d978a1d01e3, type: 2}
+  agents: []
+  cc: {fileID: 0}
 --- !u!4 &1442390220
 Transform:
   m_ObjectHideFlags: 0
@@ -543,6 +562,29 @@ MonoBehaviour:
   heights: 
   features: 
   mobs: 
+--- !u!1 &1832055189 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1269847989797338, guid: e46910c12e5315140919c0cb7bafdc8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 130567301}
+--- !u!114 &1832055194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1832055189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cb0c3b189205d4084b26a07db2ebb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: []
+  chasms: []
+  elevationIncrease: []
+  platformStarts: []
+  coins: []
+  tick: 10
+  geneticAlgorithm: 0
 --- !u!1 &1949231829
 GameObject:
   m_ObjectHideFlags: 0

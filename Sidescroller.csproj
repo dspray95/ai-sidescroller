@@ -284,6 +284,8 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\ai\Agent.cs" />
     <Compile Include="Assets\scripts\ai\AgentController.cs" />
+    <Compile Include="Assets\scripts\ai\ga\Genographer.cs" />
+    <Compile Include="Assets\scripts\ai\ga\Genome.cs" />
     <Compile Include="Assets\scripts\ai\Ghost.cs" />
     <Compile Include="Assets\scripts\ai\Perceptor.cs" />
     <Compile Include="Assets\scripts\ai\Trajectory.cs" />

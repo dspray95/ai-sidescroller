@@ -72,8 +72,25 @@ public class Level{
                 }
             }
         }
+        ValidateHeights();
     }
 
+    /**
+     * Used to remove 1x1 square ditches that the player sprite can get stuck in
+    */
+    public void ValidateHeights()
+    {
+        for(int i = 0; i < heights.Count; i++)
+        {
+            if(i > 10 && i < heights.Count - 10)
+            {
+                if(heights[i - 1] > heights[i] && heights[i + 1] > heights[i])
+                {
+                    heights[i] = heights[i - 1];
+                }
+            }
+        }
+    }
     public void GenerateFeatures()
     {
         for(int i = 0; i <= levelSize; i++)

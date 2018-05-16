@@ -9,6 +9,7 @@ public class Trajectory : MonoBehaviour {
     private int decayValue;
     public float speed = 1f;
     public int score = -1;
+    public float distToTarget = -1f;
 	// Use this for initialization
 	void Start () {
         decayValue = 300;

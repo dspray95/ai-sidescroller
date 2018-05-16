@@ -18,14 +18,17 @@ public class LevelBuilder : MonoBehaviour
     public List<MapFeature> features;
     public List<MapFeature> mobs;
 
-    public void BuildLevel(List<int> heights, List<MapFeature> features, List<MapFeature> mobs)
+    public void BuildLevel(List<int> heights, List<MapFeature> features, List<MapFeature> mobs, bool createPlayer)
     {
         this.heights = heights;
         this.features = features;
         this.mobs = mobs;
         BuildHeights();
+        if (createPlayer)
+        { 
         CreatePlayer();
-        BuildMobs();
+        }
+     //   BuildMobs();
     }
 
     public void CreatePlayer()
@@ -41,7 +44,7 @@ public class LevelBuilder : MonoBehaviour
             if (features[i] == MapFeature.GROUND)
             {
                 Transform.Instantiate(ground, new Vector3(i, heights[i], 0), Quaternion.identity);
-                for (int y = heights[i] - 1; y >= -15; y--)
+                for (int y = heights[i] - 1; y >= heights[i] - 16; y--)
                 {
                     Transform.Instantiate(belowGround, new Vector3(i, y, 0), Quaternion.identity);
                 }
