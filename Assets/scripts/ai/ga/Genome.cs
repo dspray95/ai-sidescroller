@@ -10,21 +10,10 @@ public class Genome {
     public float lowerProportion;
     public float upperProportion;
 
-    public Genome(float obstacleJump, float platformJump)
-    {
-        String strObstacleJump = "";
-        String strPlatformJump = "";
-        foreach (byte b in BitConverter.GetBytes(obstacleJump))
-        {
-            strObstacleJump += Convert.ToString(b, 2); 
-        }
-        foreach (byte b in BitConverter.GetBytes(platformJump))
-        {
-            strPlatformJump += Convert.ToString(b, 2); 
-        }
-
-        genome[0] = strObstacleJump;
-        genome[1] = strPlatformJump;
+    public Genome(int obstacleJump, int platformJump)
+    { 
+        genome[0] = Convert.ToString(obstacleJump, 2);
+        genome[1] = Convert.ToString(platformJump, 2);
         score = 0;
     }
 
@@ -34,22 +23,18 @@ public class Genome {
         this.genome = genome;
     }
 
-    public float obstacleToFloat()
+    public int obstacleToInt()
     {
-        int f = Convert.ToInt32(genome[0], 2);
-        byte[] b = BitConverter.GetBytes(f);
-        return BitConverter.ToSingle(b, 0);
+        return Convert.ToInt32(genome[0], 2);
     }
 
-    public float platformToFloat()
+    public int platformToInt()
     {
-        int f = Convert.ToInt32(genome[1], 2);
-        byte[] b = BitConverter.GetBytes(f);
-        return BitConverter.ToSingle(b, 0);
+        return Convert.ToInt32(genome[1], 2);
     }
 
     public Genome Clone()
     {
-        return new Genome(obstacleToFloat(), platformToFloat());
+        return new Genome(obstacleToInt(), platformToInt());
     }
 }

@@ -52,7 +52,6 @@ public class Agent : MonoBehaviour {
             {
                 move = 1f;
             }
-            Debug.Log("Best Jump: " + bestJump.speed);
             //target = bestJump.positions[bestJump.positions.Count - 1].x;
             controller.movespeed = bestJump.speed;
         }
@@ -80,7 +79,6 @@ public class Agent : MonoBehaviour {
                 float obsDistance = obstacle.x - transform.position.x;
                 if (obsDistance < obstacleLeapDistance && obsDistance > 0 && controller.grounded)
                 {
-                    Debug.Log("Approaching terrain change");
                     jumpPaths = new List<Trajectory>();
                     controller.ControllerJump();
                     jumping = true;
@@ -104,7 +102,6 @@ public class Agent : MonoBehaviour {
             float obsDistance = platform.x - transform.position.x;
             if (obsDistance < platformLeapDistance && obsDistance > 0 && controller.grounded)
             {
-                Debug.Log("Approaching platform...");
                 //Theres a platform immediately ahead of us. Now we have to decide if we're going to try and 
                 //jump up onto it.
                 upcomingPlatform = true;
@@ -131,7 +128,6 @@ public class Agent : MonoBehaviour {
 
         if (upcomingPlatform && platformScore > belowScore)
         {
-            Debug.Log("Jumping onto platform...");
             //Platforms coming up and we want to jump up onto it.
             //So we need to calculate our trajectories...
             if (!jumping)
@@ -176,13 +172,11 @@ public class Agent : MonoBehaviour {
                 if(cast)
                 {
                     if (cast.transform.name.Contains("ground_square")){
-                        Debug.Log("Trajectory ground hit");
                         validLanding = true;
                         break;
                     }
                     else if (cast.transform.name.Contains("below_ground")) //Invalid if we aren't going to land on top of a ground tile
                     {
-                        Debug.Log("Trajectory below ground hit: " + initial.x);
                         validLanding = false;
                         break;
                     }

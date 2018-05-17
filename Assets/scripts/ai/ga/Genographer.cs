@@ -20,8 +20,8 @@ public class Genographer {
 
     public Genome CreateGenome()
     {
-        float obstacleJump = Random.Range(0f, 10f);
-        float platformJump = Random.Range(0f, 10f);
+        int obstacleJump = Random.Range(0, 15);
+        int platformJump = Random.Range(0, 15);
         return new Genome(obstacleJump, platformJump);
     }
 
@@ -91,6 +91,13 @@ public class Genographer {
         }
         //We have our next generation!
         genomes = newGenomes;
+        string strGenes = "";
+        foreach(Genome genome in genomes)
+        {
+            strGenes += ":" + genome.obstacleToInt() + "," + genome.platformToInt() + ":";
+        }
+        Debug.Log("BEST PAIR: " + bestPair[0].obstacleToInt() + "," + bestPair[0].platformToInt() + ":" + bestPair[1].obstacleToInt() + "," + bestPair[1].platformToInt());
+        Debug.Log("NEW GENE POOL: " + strGenes);
     }
 
     List<Genome> Crossover(List<Genome> pair)
@@ -170,7 +177,7 @@ public class Genographer {
     List<char> Mutate(List<char> genome)
     {
         List<char> mutations = genome;
-        for(int i = 0; i <= mutations.Count; i++)
+        for(int i = 0; i < mutations.Count; i++)
         {
             //5% chance of mutation
             int roll = Random.Range(0, 100);

@@ -65,7 +65,6 @@ public class Perceptor : MonoBehaviour {
                                 {
                                     //If we can see the beggining of a platform, we need to remember this for later. 
                                     platformStarts.Add(hit.transform.position);
-                                    Debug.Log("platform seen");
                                     Debug.DrawRay(platformRay.origin, platformRay.direction * 20, Color.blue);
                                     Debug.DrawRay(platformBeginningRay.origin, platformBeginningRay.direction * 20, Color.blue);
                                 }
@@ -98,7 +97,6 @@ public class Perceptor : MonoBehaviour {
                                     if (obstacleHit.transform.name.Contains("ground"))
                                     {
                                         //Its ground! we can see a terrain obstacle
-                                        hit.transform.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                                         elevationIncrease.Add(hit.transform.position);
                                     }
 
@@ -115,7 +113,6 @@ public class Perceptor : MonoBehaviour {
                             if (coinHit.transform.name.Contains("coin"))
                             {
                                 //We found a coin, lets take a note of that
-                                Debug.Log("found a coin!");
                                 coins.Add(coinHit.transform.position);
                             }
                         }

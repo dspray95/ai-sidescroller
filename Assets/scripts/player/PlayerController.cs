@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour {
         if (transform.position.y <= -50)
         {
             transform.position = startPos;
-            score -= 10;
+   //         score -= 10;
         }
     }
     

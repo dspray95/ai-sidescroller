@@ -85,8 +85,8 @@ public class GameState : MonoBehaviour {
             Perceptor perceptor = (Perceptor)ai.GetComponent("Perceptor");
             perceptor.geneticAlgorithm = true;
             agent.perceptor = (Perceptor)cc.GetComponent("Perceptor");
-            agent.obstacleLeapDistance = genome.obstacleToFloat();
-            agent.platformLeapDistance = genome.platformToFloat();
+            agent.obstacleLeapDistance = genome.obstacleToInt();
+            agent.platformLeapDistance = genome.platformToInt();
             agent.genome = genome;
             agents.Add(agent);
         }
