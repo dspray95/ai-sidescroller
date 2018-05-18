@@ -9,6 +9,7 @@ public class Level{
     public List<int> heights;
     public List<MapFeature> features;
     public List<MapFeature> mobs;
+    public int goalPos = 0;
 
 	public Level(int levelSize)
     {
@@ -17,6 +18,8 @@ public class Level{
         features = new List<MapFeature>();
         mobs = new List<MapFeature>();
         chasmLength = 3;
+        goalPos = levelSize - 5;
+        Debug.Log("Level goal pos " + goalPos);
     }
 
     public void GenerateHeights()

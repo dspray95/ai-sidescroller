@@ -10,6 +10,7 @@ public class LevelBuilder : MonoBehaviour
     public Transform ground;
     public Transform belowGround;
     public Transform belowPlatform;
+    public Transform goalTile;
     //mob prefabs
     public Transform enemy;
     public Transform coin;
@@ -17,12 +18,14 @@ public class LevelBuilder : MonoBehaviour
     public List<int> heights;
     public List<MapFeature> features;
     public List<MapFeature> mobs;
+    public int goalPos;
 
-    public void BuildLevel(List<int> heights, List<MapFeature> features, List<MapFeature> mobs, bool createPlayer)
+    public void BuildLevel(List<int> heights, List<MapFeature> features, List<MapFeature> mobs, int goalPos, bool createPlayer)
     {
         this.heights = heights;
         this.features = features;
         this.mobs = mobs;
+        this.goalPos = goalPos;
         BuildHeights();
         if (createPlayer)
         { 
@@ -71,6 +74,10 @@ public class LevelBuilder : MonoBehaviour
                 {
                     Transform.Instantiate(coin, new Vector3(i, heights[i] + 3.5f, 0), Quaternion.identity);
                 }
+            }
+            if(i == goalPos)
+            {
+                Transform.Instantiate(goalTile, new Vector3(i, heights[i] + 0.5f, 0), Quaternion.identity);
             }
         }
     }

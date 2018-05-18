@@ -65,7 +65,7 @@ public class Agent : MonoBehaviour {
         }
         if (transform.position.x >= target)
         {
-           // controller.move = 0f;
+           controller.move = 0f;
         }
         UpdateGenome();
     }
@@ -161,14 +161,14 @@ public class Agent : MonoBehaviour {
         List<Vector3> trajectoryPositions = new List<Vector3>();
         for (int i = 0; i < steps; i++)
         {
-            float t = timeStep * i;
-            Vector2 currentpos = initial * t;
-            currentpos += 0.5f * Physics2D.gravity * (t * t);
-            currentpos += new Vector2(transform.position.x, transform.position.y);
+            float arcPositionTime = timeStep * i;
+            Vector2 arcPosition = initial * arcPositionTime;
+            arcPosition += 0.5f * Physics2D.gravity * (arcPositionTime * arcPositionTime);
+            arcPosition += new Vector2(transform.position.x, transform.position.y);
 
             if(i > 1) //Skip the first few segments to avoid collisions with the ground/self
             {
-                RaycastHit2D cast = Physics2D.Linecast(trajectoryPositions[i - 1], currentpos);
+                RaycastHit2D cast = Physics2D.Linecast(trajectoryPositions[i - 1], arcPosition);
                 if(cast)
                 {
                     if (cast.transform.name.Contains("ground_square")){
@@ -182,7 +182,7 @@ public class Agent : MonoBehaviour {
                     }
                 }
             }
-            trajectoryPositions.Add(currentpos);
+            trajectoryPositions.Add(arcPosition);
         }
         //Creates a trajectory game object for jump path visualisation - for the user only, the agent doesnt use the line
         Transform trajectoryInstance = Transform.Instantiate(trajactoryPrefab, trajectoryPositions[0], Quaternion.identity);
@@ -204,8 +204,14 @@ public class Agent : MonoBehaviour {
 
     float getEndTarget()
     {
-        //if we cant see an 'end' object, just keep moving left
-        return transform.position.x + 100;
+        if(transform.position.x < perceptor.goalPos)
+        {
+            return transform.position.x + 100;
+        }
+        else
+        {
+            return perceptor.goalPos;
+        }
     }
 
     void UpdateGenome()

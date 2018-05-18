@@ -8,6 +8,7 @@ public class Perceptor : MonoBehaviour {
     public List<Vector3> elevationIncrease;
     public List<Vector3> platformStarts;
     public List<Vector3> coins;
+    public float goalPos; 
     private Camera mainCamera;
     public int tick = 10;
     public bool geneticAlgorithm = false;
@@ -18,6 +19,7 @@ public class Perceptor : MonoBehaviour {
         elevationIncrease = new List<Vector3>();
         chasms = new List<Vector3>();
         mainCamera = Camera.main;
+        goalPos = 999999;
 	}
 	
 	// Update is called once per frame
@@ -104,6 +106,7 @@ public class Perceptor : MonoBehaviour {
                             }
                         }
                         //Coins can appear directly above ground tiles, so we should also check for that too
+                        //The end goal also appears directly above the ground as well.
                         Ray coinRay = mainCamera.ViewportPointToRay(new Vector3(x, y + (step), 0));
                         RaycastHit2D coinHit = Physics2D.Raycast(coinRay.origin, coinRay.direction);
                         Debug.DrawRay(coinRay.origin, coinRay.direction * 20, Color.yellow);
@@ -114,6 +117,10 @@ public class Perceptor : MonoBehaviour {
                             {
                                 //We found a coin, lets take a note of that
                                 coins.Add(coinHit.transform.position);
+                            }
+                            if (coinHit.transform.name.Contains("goal"))
+                            {
+                                goalPos = coinHit.transform.position.x;
                             }
                         }
                     }

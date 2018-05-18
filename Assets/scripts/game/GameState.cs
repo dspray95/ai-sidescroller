@@ -9,7 +9,6 @@ public class GameState : MonoBehaviour {
     public Text lblScore;
     public PlayerController pc;
     private float levelTime;
-    public Map map; 
     public LevelBuilder builder;
     public Camera mainCamera;
     public bool createPlayer = false;
@@ -42,7 +41,7 @@ public class GameState : MonoBehaviour {
             level.GenerateHeights();
             level.GenerateFeatures();
             level.GenerateMobs();
-        builder.BuildLevel(level.heights, level.features, level.mobs, false);
+        builder.BuildLevel(level.heights, level.features, level.mobs, level.goalPos, false);
     }
 	// Update is called once per frame
 	void Update () {

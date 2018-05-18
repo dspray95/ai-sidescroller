@@ -557,11 +557,13 @@ MonoBehaviour:
     type: 2}
   belowPlatform: {fileID: 4667620026093402, guid: 87747643417ecdb4a902829f8f16d048,
     type: 2}
+  goalTile: {fileID: 4580552875689124, guid: 5dcd15bf69394814a995c0353878f9a8, type: 2}
   enemy: {fileID: 4169142789089058, guid: c25e59b50017d74499c6b37fd3d0362c, type: 2}
   coin: {fileID: 4398642875245366, guid: 51d5244aadac3794090bb27bee655c2c, type: 2}
   heights: 
   features: 
   mobs: 
+  goalPos: 0
 --- !u!1 &1832055189 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1269847989797338, guid: e46910c12e5315140919c0cb7bafdc8a,
@@ -583,6 +585,7 @@ MonoBehaviour:
   elevationIncrease: []
   platformStarts: []
   coins: []
+  goalPos: 0
   tick: 10
   geneticAlgorithm: 0
 --- !u!1 &1949231829

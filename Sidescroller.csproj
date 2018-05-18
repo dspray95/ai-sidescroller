@@ -292,10 +292,8 @@
     <Compile Include="Assets\scripts\game\enemy\EnemyController.cs" />
     <Compile Include="Assets\scripts\game\enemy\EnemyState.cs" />
     <Compile Include="Assets\scripts\game\GameState.cs" />
-    <Compile Include="Assets\scripts\map\Map.cs" />
     <Compile Include="Assets\scripts\map\map_alt\Level.cs" />
     <Compile Include="Assets\scripts\map\map_alt\LevelBuilder.cs" />
-    <Compile Include="Assets\scripts\map\MapBuilder.cs" />
     <Compile Include="Assets\scripts\map\MapFeature.cs" />
     <Compile Include="Assets\scripts\player\CameraController.cs" />
     <Compile Include="Assets\scripts\player\PlayerController.cs" />
